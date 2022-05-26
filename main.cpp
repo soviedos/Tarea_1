@@ -6,6 +6,14 @@
 
 using namespace std;
 
+#include "listaSimple.h"
+#include "cola.h"
+#include "pila.h"
+
+listaSimple* LS = new listaSimple();
+pila* pi = new pila();
+cola* co = new cola();
+
 void menuPila () {
     int opc = 0;
     do {
@@ -13,8 +21,9 @@ void menuPila () {
         cout << endl;
         cout << "(1) Agregar a la pila" << endl;
         cout << "(2) Retirar de la pila" << endl;
-        cout << "(3) Mover valor a la lista" << endl;
-        cout << "(4) Mover valor a la cola" << endl;
+        cout << "(3) Mostrar los valores de la pila" << endl;
+        cout << "(4) Mover valor a la lista" << endl;
+        cout << "(5) Mover valor a la cola" << endl;
         cout << "(0) Terminar" << endl;
         cout << endl;
         cout << "OPCION SELECCIONADA-> "; cin >> opc;
@@ -23,15 +32,31 @@ void menuPila () {
 
         switch (opc) {
             case 1: {
+                cout << "Agregar a la pila" << endl;
+                int numero;
+                cout << "Por favor, ingrese el número que desea agregar" << endl;
+                cin >> numero;
+                pi->push(numero);
                 break;
             }
             case 2: {
+                cout << "Retirar de la pila" << endl;
+                int numero;
+                numero = pi->pop();
+                cout << "El número que se elimino es: " << numero;
+                cout << endl << endl;
                 break;
             }
             case 3: {
+                cout << "Mostrar los valores de la pila" << endl;
+                pi->show();
+                cout << endl;
                 break;
             }
             case 4: {
+                break;
+            }
+            case 5: {
                 break;
             }
             case 0: {
@@ -51,8 +76,9 @@ void menuCola () {
         cout << endl;
         cout << "(1) Agregar a la cola" << endl;
         cout << "(2) Retirar de la cola" << endl;
-        cout << "(3) Mover valor a la lista" << endl;
-        cout << "(4) Mover valor a la pila" << endl;
+        cout << "(3) Mostrar los valores de la cola" << endl;
+        cout << "(4) Mover valor a la lista" << endl;
+        cout << "(5) Mover valor a la pila" << endl;
         cout << "(0) Terminar" << endl;
         cout << endl;
         cout << "OPCION SELECCIONADA-> "; cin >> opc;
@@ -61,15 +87,31 @@ void menuCola () {
 
         switch (opc) {
             case 1: {
+                cout << "Agregar a la cola" << endl;
+                int numero;
+                cout << "Por favor, ingrese el número que desea agregar" << endl;
+                cin >> numero;
+                co->poner(numero);
                 break;
             }
             case 2: {
+                cout << "Retirar de la cola" << endl;
+                int numero;
+                numero = co->quitar();
+                cout << "El número que se elimino es: " << numero;
+                cout << endl << endl;
                 break;
             }
             case 3: {
+                cout << "Mostrar los valores de la cola" << endl;
+                co->mostrarCola();
+                cout << endl;
                 break;
             }
             case 4: {
+                break;
+            }
+            case 5: {
                 break;
             }
             case 0: {
@@ -101,12 +143,34 @@ void menuLista () {
 
         switch (opc) {
             case 1: {
+                cout << "Agregar a la lista" << endl;
+                int numero;
+                cout << "Por favor, ingrese el número que desea agregar" << endl;
+                cin >> numero;
+                bool agregado = LS->agregarAsc(numero);
+                if (agregado) {
+                    cout << "El número ha sido agregado satisfactoriamente a la lista";
+                }else {
+                    cout << "El número no se pudo ingresar";
+                }
                 break;
             }
             case 2: {
+                cout << "Retirar de la lista" << endl;
+                int numero;
+                cout << "Por favor, ingrese el número que desea agregar" << endl;
+                cin >> numero;
+                bool agregado = LS->eliminar(numero);
+                if (agregado) {
+                    cout << "El número ha sido eliminado satisfactoriamente a la lista";
+                }else {
+                    cout << "El número no se pudo eliminar";
+                }
                 break;
             }
             case 3: {
+                cout << "Consultar la lista" << endl;
+                LS->desplegarLista();
                 break;
             }
             case 4: {
