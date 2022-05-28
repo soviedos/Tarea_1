@@ -33,6 +33,7 @@ class listaSimple {
 
         //OPERACIONES DE ELIMINAR
         bool eliminar(int);
+        bool eliminaPos(int); // Elimina de la lista el nodo en la posición int _pos.
 
         // DESPLEGAR
         void desplegarLista();

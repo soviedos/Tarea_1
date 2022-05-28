@@ -153,3 +153,46 @@ bool listaSimple::eliminar(int _dato)
     }
     return eliminado;
 }
+bool listaSimple::eliminaPos(int _dato)
+{
+    bool eliminado = false;
+    int largo = getLargo();
+    nodoS* dato = getCab();
+    nodoS* aux;
+    nodoS* ant;
+
+    if (!esVacia()) {
+        aux = getCab();
+        for (int i = 0; i < largo; i++) {
+            if (_dato == aux->getDato() && i == 0) {
+                setCab(getCab()->getSgte()); // Apunta al segundo nodo.
+                delete aux; // Eliminar el nodo, libera la memoria del nodo.
+                setLargo(getLargo() - 1);
+                eliminado = true;
+                break;
+            }
+            else if (_dato == aux->getDato() == i && i < largo) {
+                //En medio
+                ant = anterior(aux->getDato());
+                ant->setSgte(aux->getSgte()); // Paso 2. Reacomode las lista sin el nodo.
+                delete aux; // Paso 3. Eliminar el nodo, liberar el espacio de memoria del nodo.
+                setLargo(getLargo() - 1);
+                eliminado = true;
+                break;
+            }
+            else if (i == largo) {
+                // Final
+                ant = anterior(aux->getDato());
+                ant->setSgte(NULL); // Paso 2. Reacomode las lista sin el nodo.
+                delete aux; // Paso 3. Eliminar el nodo, liberar el espacio de memoria del nodo.
+                setLargo(getLargo() - 1);
+                eliminado = true;
+                break;
+            }else {
+                ant = aux;
+                aux = ant->getSgte();
+            }
+        }
+    }
+    return eliminado;
+}
