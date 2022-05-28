@@ -163,7 +163,7 @@ bool listaSimple::eliminaPos(int _dato)
 
     if (!esVacia()) {
         aux = getCab();
-        for (int i = 0; i < largo; i++) {
+        for (int i = 0; i <= largo; i++) {
             if (_dato == aux->getDato() && i == 0) {
                 setCab(getCab()->getSgte()); // Apunta al segundo nodo.
                 delete aux; // Eliminar el nodo, libera la memoria del nodo.
@@ -171,7 +171,7 @@ bool listaSimple::eliminaPos(int _dato)
                 eliminado = true;
                 break;
             }
-            else if (_dato == aux->getDato() == i && i < largo) {
+            else if (_dato == aux->getDato() && i < largo) {
                 //En medio
                 ant = anterior(aux->getDato());
                 ant->setSgte(aux->getSgte()); // Paso 2. Reacomode las lista sin el nodo.

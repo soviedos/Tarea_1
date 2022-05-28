@@ -54,9 +54,17 @@ void menuPila () {
                 break;
             }
             case 4: {
+                cout << "Mover valor a la lista" << endl;
+                int numero = pi->pop();
+                LS->agregarAsc(numero);
+                cout << "El numero: " << numero << " ha sido movido a la lista." << endl;
                 break;
             }
             case 5: {
+                cout << "Mover valor a la cola" << endl;
+                int numero = pi->pop();
+                co->poner(numero);
+                cout << "El numero: " << numero << " ha sido movido a la cola." << endl;
                 break;
             }
             case 0: {
@@ -109,9 +117,18 @@ void menuCola () {
                 break;
             }
             case 4: {
+                cout << "Mover valor a la lista" << endl;
+                int numero = co->quitar();
+                LS->agregarAsc(numero);
+                cout << "El numero: " << numero << " ha sido movido a la lista." << endl;
+                break;
                 break;
             }
             case 5: {
+                cout << "Mover valor a la pila" << endl;
+                int numero = co->quitar();
+                pi->push(numero);
+                cout << "El numero: " << numero << " ha sido movido a la pila." << endl;
                 break;
             }
             case 0: {
@@ -178,8 +195,8 @@ void menuLista () {
                 cout << "Por favor, ingrese el número que desea mover a la cola" << endl;
                 cin >> numero;
                 bool cambiado = LS->eliminaPos(numero);
-                co->poner(numero);
                 if (cambiado) {
+                    co->poner(numero);
                     cout << "El número ha sido movido satisfactoriamente a la cola" << endl;
                 }else {
                     cout << "El número no se pudo mover" << endl;
@@ -192,8 +209,8 @@ void menuLista () {
                 cout << "Por favor, ingrese el número que desea mover a la pila" << endl;
                 cin >> numero;
                 bool cambiado = LS->eliminaPos(numero);
-                pi->push(numero);
                 if (cambiado) {
+                    pi->push(numero);
                     cout << "El número ha sido movido satisfactoriamente a la pila" << endl;
                 }else {
                     cout << "El número no se pudo mover" << endl;
