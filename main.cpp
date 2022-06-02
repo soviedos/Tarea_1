@@ -32,16 +32,18 @@ ABB crearNodo(int x)
 
     return nuevoNodo;
 }
-void insertar(ABB &arbol, int x)
+int insertar(ABB &arbol, int x, int contador)
 {
+    contador ++;
     if(arbol==NULL)
     {
         arbol = crearNodo(x);
     }
     else if(x < arbol->nro)
-        insertar(arbol->izq, x);
+        insertar(arbol->izq, x, contador);
     else if(x > arbol->nro)
-        insertar(arbol->der, x);
+        insertar(arbol->der, x, contador);
+    return contador;
 }
 
 void preOrden(ABB arbol)
@@ -110,9 +112,8 @@ void menuArbol () {
                 nodoS* aux = LS->getCab();
                 int n;  // numero de nodos del arbol
                 int x; // elemento a insertar en cada nodo
-                cout << "\n\t\t  ..[ ARBOL BINARIO DE BUSQUEDA ]..  \n\n";
-                //cout << " Numero de nodos del arbol:  ";
-                //cin >> n;
+                int contador = 0;
+                cout << "\n\n\t\t  ..[ ARBOL BINARIO DE BUSQUEDA ]..  \n\n";
                 cout << endl;
                 if (LS->esVacia()) {
                     cout << "La lista esta vacia";
@@ -123,7 +124,8 @@ void menuArbol () {
                         x = aux->getDato();
                         aux = aux->getSgte();
                         cout << " Numero del nodo " << i+1 << ": " << x << endl;
-                        insertar(arbol, x);
+                        contador = insertar(arbol, x, contador);
+                        cout << "Los pasos requeridos para ingresar el numero: " <<x << " son: " << contador << endl;
                         i++;
                     }
                 }
